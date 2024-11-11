@@ -61,7 +61,7 @@ function App() {
      // Check if the current route is in the hideNavbarRoutes list
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
   return (
-    <div>
+    <div className=' min-h-[100svh] flex flex-col justify-between'>
       {/* Conditional rendering of Navbar */}
       {showNavbar && <Nav />}
 

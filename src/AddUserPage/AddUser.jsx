@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AddUser = ({ onAddUser }) => {
   const [newUser, setNewUser] = useState({
@@ -8,6 +9,8 @@ const AddUser = ({ onAddUser }) => {
     status: true,
     photo: null,
   });
+
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,10 +35,11 @@ const AddUser = ({ onAddUser }) => {
   const handleAddUser = () => {
     onAddUser({ ...newUser, id: Date.now() }); // Unique ID
     setNewUser({ name: '', email: '', role: '', status: true, photo: null }); // Reset form
+    navigate('/userprofile'); // Navigate back to UserProfile page
   };
 
   return (
-    <div className="p-6 mt-9 bg-white rounded-xl shadow-md m-4">
+    <div className="p-6 bg-white rounded-xl shadow-md m-4">
       <h2 className="text-2xl font-semibold mb-4">Add New User</h2>
       <input
         type="text"

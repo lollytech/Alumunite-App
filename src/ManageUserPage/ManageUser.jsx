@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 
 const ManageUser = ({ users, onUpdateUser }) => {
-  const [editingUser, setEditingUser] = useState(null); // Store the user being edited
-  const [updatedUser, setUpdatedUser] = useState({}); // Store the updated user data
+  const [editingUser, setEditingUser] = useState(null);
+  const [updatedUser, setUpdatedUser] = useState({});
 
-  // Handle input change for the edit form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUpdatedUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
-  // Handle photo upload for the user being edited
   const handlePhotoUpload = (e) => {
     const file = e.target.files[0];
     const allowedTypes = ['image/jpeg', 'image/png'];
@@ -26,62 +24,60 @@ const ManageUser = ({ users, onUpdateUser }) => {
     }
   };
 
-  // Set the user data to be edited
   const handleEditClick = (user) => {
     setEditingUser(user);
-    setUpdatedUser(user); // Pre-fill the form with the current user data
+    setUpdatedUser(user);
   };
 
-  // Submit the updated user data
   const handleUpdateUser = () => {
-    onUpdateUser(updatedUser); // Update the user in the parent component
-    setEditingUser(null); // Clear the edit form
+    onUpdateUser(updatedUser);
+    setEditingUser(null);
   };
 
   return (
-    <div className="p-6 mt-9 bg-white rounded-xl shadow-md m-4">
+    <div className="p-6 bg-white rounded-xl shadow-md m-4 md:overflow-x-auto">
       <h2 className="text-2xl font-semibold mb-4">Manage User</h2>
 
-      {/* Display users in a table */}
-      <table className="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th className="py-2 px-4">Name</th>
-            <th className="py-2 px-4">Email</th>
-            <th className="py-2 px-4">Role</th>
-            <th className="py-2 px-4">Status</th>
-            <th className="py-2 px-4">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id} className="border-t">
-              <td className="py-2 px-4">{user.name}</td>
-              <td className="py-2 px-4">{user.email}</td>
-              <td className="py-2 px-4">{user.role}</td>
-              <td className="py-2 px-4">
-                <span
-                  className={`px-2 py-1 rounded-md ${
-                    user.status ? 'bg-green-500' : 'bg-red-500'
-                  } text-white`}
-                >
-                  {user.status ? 'Active' : 'Inactive'}
-                </span>
-              </td>
-              <td className="py-2 px-4">
-                <button
-                  onClick={() => handleEditClick(user)}
-                  className="text-[#047857] hover:text-[#047857]"
-                >
-                  Edit
-                </button>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white text-sm md:text-base">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="py-2 px-4 text-left">Name</th>
+              <th className="py-2 px-4 text-left">Email</th>
+              <th className="py-2 px-4 text-left">Role</th>
+              <th className="py-2 px-4 text-left">Status</th>
+              <th className="py-2 px-4 text-left">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id} className="border-t">
+                <td className="py-2 px-4 text-left">{user.name}</td>
+                <td className="py-2 px-4 text-left">{user.email}</td>
+                <td className="py-2 px-4 text-left">{user.role}</td>
+                <td className="py-2 px-4 text-left">
+                  <span
+                    className={`px-2 py-1 rounded-md ${
+                      user.status ? 'bg-green-500' : 'bg-red-500'
+                    } text-white`}
+                  >
+                    {user.status ? 'Active' : 'Inactive'}
+                  </span>
+                </td>
+                <td className="py-2 px-4 text-left">
+                  <button
+                    onClick={() => handleEditClick(user)}
+                    className="text-[#047857] hover:text-[#047857]"
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-      {/* Edit Form */}
       {editingUser && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-xl shadow-md max-w-lg w-full">
@@ -131,7 +127,7 @@ const ManageUser = ({ users, onUpdateUser }) => {
                 Save Changes
               </button>
               <button
-                onClick={() => setEditingUser(null)} // Close edit form
+                onClick={() => setEditingUser(null)}
                 className="ml-2 px-4 py-2 bg-red-600 text-white rounded-md"
               >
                 Cancel

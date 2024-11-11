@@ -8,7 +8,7 @@ function Nav() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <div className='w-full h-[4rem] mt-10 bg-white shadow-md shadow-gray-500 flex justify-between items-center px-6'>
+    <div className='w-full h-[4rem] mt-5 bg-white shadow-md shadow-gray-500 flex justify-between items-center px-6'>
       {/* Logo Section */}
       <div className='text-xl font-bold text-[#064E3B]'>
         <h1>Alumunite</h1>
