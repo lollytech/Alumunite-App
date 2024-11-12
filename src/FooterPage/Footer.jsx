@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div>
         <footer className=' justify-center flex items-center'>
-            <h1 className=' text-xs'> copyright design by Omolara </h1>
+          <p>&copy; 2024 Adebayo Sukurat Omolara. All rights reserved.</p>
         </footer>
     </div>
   )
